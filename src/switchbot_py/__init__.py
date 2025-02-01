@@ -1,2 +1,3 @@
-def hello() -> str:
-    return "Hello from switchbot-py!"
+from .device import Device
+from .remote import InfraredRemote
+from .switchbot import SwitchBot

@@ -1,10 +1,15 @@
+import os
 from .client import SwitchBotClient
 from .device import Device, DeviceDto
 from .remote import InfraredRemoteDto, InfraredRemote
 
 
 class SwitchBot:
-    def __init__(self, token: str, secret: str):
+    def __init__(self, token: str | None = None, secret: str | None = None):
+        if token is None:
+            token = os.getenv("SWITCHBOT_TOKEN")
+        if secret is None:
+            secret = os.getenv("SWITCHBOT_SECRET")
         self._client = SwitchBotClient(token=token, secret=secret)
         self._devices = None
 

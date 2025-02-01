@@ -21,9 +21,9 @@ class Device:
         client: SwitchBotClient,
         device_id: str,
         device_type: str,
-        device_name: str,
-        enable_cloud_service: bool,
-        hub_device_id: str,
+        device_name: str | None = None,
+        enable_cloud_service: bool | None = None,
+        hub_device_id: str | None = None,
     ):
         self._client = client
         self.device_id = device_id
@@ -42,9 +42,9 @@ class Device:
         client: SwitchBotClient,
         device_type: str,
         device_id: str,
-        device_name: str,
-        enable_cloud_service: bool,
-        hub_device_id: str,
+        device_name: str | None = None,
+        enable_cloud_service: bool | None = None,
+        hub_device_id: str | None = None,
         **kwargs,
     ):
         device_cls = cls._device_type_mapping.get(device_type, Device)

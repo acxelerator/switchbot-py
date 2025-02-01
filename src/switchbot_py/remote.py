@@ -20,8 +20,8 @@ class InfraredRemote:
         client: SwitchBotClient,
         device_id: str,
         remote_type: str,
-        device_name: str,
-        hub_device_id: str,
+        device_name: str | None = None,
+        hub_device_id: str | None = None,
     ):
         self._client = client
         self.remote_type = remote_type
@@ -42,8 +42,8 @@ class InfraredRemote:
         client: SwitchBotClient,
         remote_type: str,
         device_id: str,
-        device_name: str,
-        hub_device_id: str,
+        device_name: str | None = None,
+        hub_device_id: str | None = None,
     ):
         device_cls = cls._remote_type_mapping.get(remote_type, InfraredRemote)
         return device_cls(

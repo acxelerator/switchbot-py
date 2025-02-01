@@ -1,18 +1,16 @@
 import base64
 import hashlib
 import hmac
-import os
 import time
 import uuid
 
 import httpx
 
-TOKEN = os.getenv("TOKEN")
-SECRET = os.getenv("SECRET")
-
 
 class SwitchBotClient:
-    def __init__(self, token: str, secret: str):
+    def __init__(self, token: str | None, secret: str | None):
+        if token is None or secret is None:
+            raise ValueError("token or secret is required")
         self.token = token
         self.secret = secret
 
