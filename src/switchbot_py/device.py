@@ -12,6 +12,18 @@ class DeviceDto(BaseModel):
     hub_device_id: str = Field(alias="hubDeviceId")
 
 
+class DeviceStatus(BaseModel):
+    version: str
+    temperature: float
+    humidity: int
+    light_level: int | None = Field(default=None, alias="lightLevel")
+    battery: int | None = Field(default=None)
+    co2: int | None = Field(default=None, alias="CO2")
+    device_id: str = Field(alias="deviceId")
+    device_type: str = Field(alias="deviceType")
+    hub_device_id: str = Field(alias="hubDeviceId")
+
+
 class Device:
     _device_type: ClassVar[str]
     _device_type_mapping: ClassVar[dict[str, Type["Device"]]] = {}
@@ -58,9 +70,12 @@ class Device:
             **kwargs,
         )
 
-    def get_status(self) -> dict:
+    def get_status(self, raw: bool = False) -> dict | DeviceStatus:
         url = f"https://api.switch-bot.com/v1.1/devices/{self.device_id}/status"
-        return self._client.get(url=url)
+        res = self._client.get(url=url)
+        if raw:
+            return res
+        return DeviceStatus(**res)
 
     def __repr__(self) -> str:
         return f"Device(type={self._device_type}, name={self.device_name}, device_id={self.device_id})"
