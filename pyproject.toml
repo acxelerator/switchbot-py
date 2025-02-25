@@ -30,3 +30,24 @@ allow-direct-references = true
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/switchbot_py"]
+
+[tool.pytest.ini_options]
+addopts = [
+    "-vv",
+    "--ignore=.venv",
+    "--ignore=node_modules",
+    "--ignore=volume",
+    "--cov=./src/switchbot_py",
+    "--cov-report=html",
+]
+markers = []
+pythonpath = [
+    "./src/switchbot_py"
+]
+testpaths = [
+    "./test",
+]
+
+[tool.rye.scripts]
+format = { chain = ["ruff format", "ruff check --fix"] }
+test = "rye run pytest"
