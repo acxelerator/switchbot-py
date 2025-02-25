@@ -5,12 +5,15 @@ import time
 import uuid
 
 import httpx
+from .errors import SwitchbotClientError
+
+__all__ = ["SwitchBotClient"]
 
 
 class SwitchBotClient:
     def __init__(self, token: str | None, secret: str | None):
         if token is None or secret is None:
-            raise ValueError("token or secret is required")
+            raise SwitchbotClientError("token or secret is required")
         self.token = token
         self.secret = secret
 
