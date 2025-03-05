@@ -55,7 +55,7 @@ class InfraredRemote:
         )
 
     def __repr__(self) -> str:
-        return f"Remote(type={self._remote_type}, name={self.device_name}, device_id={self.device_id})"
+        return f"Remote(type={self.remote_type}, name={self.device_name}, device_id={self.device_id})"
 
     def _command(
         self,

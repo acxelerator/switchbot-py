@@ -78,7 +78,7 @@ class Device:
         return DeviceStatus(**res)
 
     def __repr__(self) -> str:
-        return f"Device(type={self._device_type}, name={self.device_name}, device_id={self.device_id})"
+        return f"Device(type={self.device_type}, name={self.device_name}, device_id={self.device_id})"
 
 
 class DeviceMeterProCo2(Device):
