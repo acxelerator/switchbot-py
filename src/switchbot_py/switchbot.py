@@ -1,7 +1,8 @@
 import os
+
 from .client import SwitchBotClient
 from .device import Device, DeviceDto
-from .remote import InfraredRemoteDto, InfraredRemote
+from .remote import InfraredRemote, InfraredRemoteDto
 
 
 class SwitchBot:

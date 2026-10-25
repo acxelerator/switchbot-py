@@ -5,6 +5,7 @@ import time
 import uuid
 
 import httpx
+
 from .errors import SwitchbotClientError
 
 __all__ = ["SwitchBotClient"]
@@ -20,7 +21,7 @@ class SwitchBotClient:
     def _generate_switchbot_headers(self) -> dict:
         # see: https://github.com/OpenWonderLabs/SwitchBotAPI?tab=readme-ov-file#python-3-example-code
         nonce = uuid.uuid4()
-        t = int(round(time.time() * 1000))
+        t = round(time.time() * 1000)
         string_to_sign = f"{self.token}{t}{nonce}"
         string_to_sign = bytes(string_to_sign, "utf-8")
         secret = bytes(self.secret, "utf-8")

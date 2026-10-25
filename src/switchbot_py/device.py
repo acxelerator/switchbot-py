@@ -1,6 +1,7 @@
+from typing import ClassVar
+
 from pydantic import BaseModel, Field
 
-from typing import ClassVar, Type
 from .client import SwitchBotClient
 
 
@@ -26,7 +27,7 @@ class DeviceStatus(BaseModel):
 
 class Device:
     _device_type: ClassVar[str]
-    _device_type_mapping: ClassVar[dict[str, Type["Device"]]] = {}
+    _device_type_mapping: ClassVar[dict[str, type[Device]]] = {}
 
     def __init__(
         self,

@@ -1,6 +1,7 @@
 from unittest.mock import patch
-from switchbot_py.switchbot import SwitchBot
+
 from switchbot_py.device import Device
+from switchbot_py.switchbot import SwitchBot
 
 
 def test_get_devices():
@@ -92,7 +93,7 @@ def test_environment_variables():
         }.get(key)
 
         # SwitchBotインスタンスの作成
-        switchbot = SwitchBot()  # 引数なしで環境変数から取得
+        SwitchBot()  # 引数なしで環境変数から取得
 
         # 正しいトークンとシークレットでクライアントが初期化されたか確認
         mock_client.assert_called_once_with(token="env_token", secret="env_secret")

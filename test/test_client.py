@@ -1,7 +1,9 @@
-from switchbot_py.errors import SwitchbotClientError
+from unittest.mock import MagicMock, patch
+
 import pytest
+
 from switchbot_py.client import SwitchBotClient
-from unittest.mock import patch, MagicMock
+from switchbot_py.errors import SwitchbotClientError
 
 
 def test_error():

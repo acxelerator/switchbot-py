@@ -1,5 +1,7 @@
+from typing import ClassVar
+
 from pydantic import BaseModel, Field
-from typing import ClassVar, Type
+
 from .client import SwitchBotClient
 
 
@@ -12,7 +14,7 @@ class InfraredRemoteDto(BaseModel):
 
 class InfraredRemote:
     _remote_type: ClassVar[str]
-    _remote_type_mapping: ClassVar[dict[str, Type["InfraredRemote"]]] = {}
+    _remote_type_mapping: ClassVar[dict[str, type[InfraredRemote]]] = {}
     _funcs_to_attach: ClassVar[list[str]] = []
 
     def __init__(
@@ -81,7 +83,7 @@ class InfraredRemote:
 
 class RemoteAirConditioner(InfraredRemote):
     _remote_type = "Air Conditioner"
-    _funcs_to_attach = ["_turn_off"]
+    _funcs_to_attach: ClassVar[list[str]] = ["_turn_off"]
 
     def _turn_on_air_conditioner(self, temperature: int, mode: int, fan: int):
         res = self._command(
@@ -100,9 +102,9 @@ class RemoteAirConditioner(InfraredRemote):
 
 class RemoteLight(InfraredRemote):
     _remote_type = "Light"
-    _funcs_to_attach = ["_turn_on", "_turn_off"]
+    _funcs_to_attach: ClassVar[list[str]] = ["_turn_on", "_turn_off"]
 
 
 class RemoteDiyTv(InfraredRemote):
     _remote_type = "DIY TV"
-    _funcs_to_attach = ["_turn_on", "_turn_off"]
+    _funcs_to_attach: ClassVar[list[str]] = ["_turn_on", "_turn_off"]
