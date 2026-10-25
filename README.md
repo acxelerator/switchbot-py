@@ -4,7 +4,7 @@ SwitchBot client for Python
 # install
 
 ```shell
-$ rye add switchbot_py --git=https://github.com/acxelerator/switchbot-py 
+$ uv add git+https://github.com/acxelerator/switchbot-py 
 ```
 
 # usage
